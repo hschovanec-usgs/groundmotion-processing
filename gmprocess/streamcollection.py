@@ -222,12 +222,13 @@ class StreamCollection(object):
             subindex = 0
             for imc in imcs:
                 for imt in imts:
-                    pgm_data[idx][subindex] = station[imt][imc]
+                    dfidx = (station.IMT == imt) & (station.IMC == imc)
+                    value = station[dfidx].Result.tolist()[0]
+                    pgm_data[idx][subindex] = value
                     subindex += 1
         pgm_dataframe = pd.DataFrame(pgm_data, columns=pgm_columns)
 
         dataframe = pd.concat([meta_dataframe, pgm_dataframe], axis=1)
-
         return dataframe
 
     def __str__(self):
