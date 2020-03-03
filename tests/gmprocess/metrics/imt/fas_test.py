@@ -73,8 +73,9 @@ def test_fas():
 
     pgms = summary.pgms
     for idx, f in enumerate(freqs):
-        fstr = 'FAS(%.3f)' % (1/f)
+        fstr = 'FAS(%.3f)' % (1 / f)
         fval = pgms.loc[fstr, 'QUADRATIC_MEAN'].Result
+        print(fval, fas[idx] * stream[0].stats.delta)
         np.testing.assert_allclose(
             fval,
             fas[idx] * stream[0].stats.delta,

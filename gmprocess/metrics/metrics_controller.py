@@ -48,7 +48,8 @@ class MetricsController(object):
                 Intensity measurement types (string) to calculate.
             imcs (list):
                 Intensity measurement components (string) to
-                calculate. timeseries (StationStream): Stream of the
+                calculate.
+            timeseries (StationStream): Stream of the
                 timeseries data.
             event (ScalarEvent):
                 Defines the focal time, geographic location, and magnitude of

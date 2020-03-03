@@ -23,14 +23,16 @@ class Arithmetic_Mean(Combination):
         Returns:
             am: Dictionary of arithmetic mean.
         """
-        if isinstance(self.combination_data, dict):
+        if 'freqs' in self.combination_data:
+            time_freq = self.combination_data.pop('freqs')
+            horizontal_traces = []
+            am = {}
+            for chan in [c for c in self.combination_data]:
+                horizontal_traces += [self.combination_data[chan]]
+            am['freqs'] = time_freq
+            am[''] = np.mean(horizontal_traces, axis=0)
+        else:
             horizontals = self._get_horizontals()
             h1, h2 = horizontals[0], horizontals[1]
             am = {'': 0.5 * (h1 + h2)}
-        else:
-            horizontals = self.combination_data
-            time_freq = horizontals[0]
-            h1, h2 = horizontals[1], horizontals[2]
-            am = [time_freq]
-            am += [np.mean([h1, h2], axis=0)]
         return am
